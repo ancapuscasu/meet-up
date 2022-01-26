@@ -23,6 +23,11 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  environment:
+    CLIENT_ID: ${file(config.json):CLIENT_ID}
+    CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
+    PROJECT_ID: ${file(config.json):PROJECT_ID}
+    CALENDAR_ID: ${file(config.json):CALENDAR_ID}
   region: us-east-2
   lambdaHashingVersion: 20201221
   timeout: 30
@@ -50,11 +55,7 @@ provider:
 #                - "/*"
 
 # you can define service wide environment variables here
-environment:
-    CLIENT_ID: ${file(config.json):CLIENT_ID}
-    CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
-    PROJECT_ID: ${file(config.json):PROJECT_ID}
-    CALENDAR_ID: ${file(config.json):CALENDAR_ID}
+
 
 # you can add packaging information here
 #package:
