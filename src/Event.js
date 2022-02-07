@@ -33,7 +33,7 @@ class Event extends Component {
         <div className="event-details">
           <p className="event-details__description">{event.description}</p>
           <p> <span className="event-details__start-time">{event.start.dateTime}</span>-<span className="event-details__end-time">{event.end.dateTime}</span></p>
-          <p>View event on Google Calendar 
+          <p>View event on Google Calendar <br/>
             <a className="event-details__link" href={event.htmlLink}>{event.htmlLink}</a>
           </p>
         </div>
