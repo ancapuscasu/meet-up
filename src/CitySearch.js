@@ -6,13 +6,17 @@ class CitySearch extends Component {
 
   state = {
     query: '',
-    suggestions: []
+    suggestions: [],
+    showSuggestions: false
   }
 
   handleInputChange = (event) => {
     const value = event.target.value;
+    this.setState({
+      showSuggestions: true
+    });
     const suggestions = this.props.locations.filter((location) => {
-      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
+      return location.toUpperCase().indexOf(value.toUpperCase()) === 0;
     });
     this.setState({ 
       query:value,
@@ -20,30 +24,35 @@ class CitySearch extends Component {
     });
   };
 
+
   handleItemClicked = (suggestion) => {
     this.setState({
-      query: suggestion
+      query: suggestion,
+      showSuggestions: false
     });
+
+    this.props.updateEvents(suggestion);
   }
 
 
   render() {
+    let { showSuggestions, suggestions, query } = this.state;
     return (
       <div className='CitySearch'>
         <input
           type="text"
           className="city"
-          value={this.state.query}
+          placeholder='Search for events in your city...'
+          value={query}
           onChange={this.handleInputChange}
         />
-        <ul className='suggestions' >
-          {this.state.suggestions.map((suggestion) => (
-            <li 
-              key={suggestion} 
-              onClick={() => this.handleItemClicked(suggestion)}
-            >{suggestion}</li>
+        <ul className={`suggestions ${showSuggestions ? 'showSuggestions' : 'display-none'}`} >
+          {suggestions.map((suggestion) => (
+            <li key={suggestion} onClick={() => this.handleItemClicked(suggestion)}>
+              {suggestion}
+            </li>
           ))}
-          <li key='all'>
+          <li id='all' onClick={() => this.handleItemClicked('all')}>
             <b>See all cities</b>
           </li>
         </ul>
