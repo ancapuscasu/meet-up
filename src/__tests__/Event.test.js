@@ -30,8 +30,12 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.start-time')).toHaveLength(1);
     });
 
+    test('renders correct event details (location)', () => {
+        expect(EventWrapper.find('.event-details__location').text()).toBe("Berlin, Germany");
+    })
+
     test('renders show details button', () => {
-        expect(EventWrapper.find('.show-details')).toHaveLength(1);
+        expect(EventWrapper.find('.details-btn')).toHaveLength(1);
     })
 
 
@@ -48,20 +52,17 @@ describe('<Event /> component', () => {
         EventWrapper.setState({
             collapsed: true
         });
-        EventWrapper.find('.show-details').simulate('click');
+        EventWrapper.find('.details-btn').simulate('click');
         expect(EventWrapper.state('collapsed')).toBe(false);
     })
 
     test('When event state.collapsed = true, .event-details is hidden', () => {
-        EventWrapper.find('.show-details').simulate('click');
+        EventWrapper.find('.details-btn').simulate('click');
         expect(EventWrapper.find('.event-details')).toHaveLength(0);
     })
 
     test('Event state.eventDetailsButtonText changes to "Hide details" when event state.collapsed=false', () => {
-        EventWrapper.setState({
-            collapsed: false
-        });
-        EventWrapper.find('.show-details').simulate('click');
+        EventWrapper.find('.details-btn').simulate('click');
         expect(EventWrapper.state('eventDetailsButtonText')).toBe('Hide details');
     })
 
@@ -69,7 +70,7 @@ describe('<Event /> component', () => {
         EventWrapper.setState({
             eventDetailsButtonText: "Hide details"
         });
-        EventWrapper.find('.show-details').simulate('click');
+        EventWrapper.find('.details-btn').simulate('click');
         expect(EventWrapper.state('eventDetailsButtonText')).toBe('More details');
     })
 
@@ -79,20 +80,6 @@ describe('<Event /> component', () => {
             collapsed: false
         });
         expect(EventWrapper.find('.event-details')).toHaveLength(1);
-    })
-
-    test('renders event details (summary)', () => {
-        EventWrapper.setState({
-            collapsed: false
-        });
-        expect(EventWrapper.find('.event-details__summary')).toHaveLength(1);
-    })
-
-    test('renders correct event details (Summary)', () => {
-        EventWrapper.setState({
-            collapsed: false
-        });
-        expect(EventWrapper.find('.event-details__summary').text()).toBe("React is Fun");
     })
 
     test('renders correct event details (description)', () => {
@@ -116,13 +103,6 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.event-details__end-time').text()).toBe("2020-05-20T15:00:00+02:00");
     })
 
-    test('renders correct event details (location)', () => {
-        EventWrapper.setState({
-            collapsed: false
-        });
-        expect(EventWrapper.find('.event-details__location').text()).toBe("Berlin, Germany");
-    })
-
     test('renders correct event details (link)', () => {
         EventWrapper.setState({
             collapsed: false
@@ -130,13 +110,3 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.event-details__link').text()).toBe("https://www.google.com/calendar/event?eid=M3F0ZDZ1c2NxNHRzaTZnYzdubW10cHFsY3RfMjAyMDA1MjBUMTIwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20");
     })
 });
-
-
-//     test('renders description', () => {
-        
-//     });
-
-
-//     test('renders end-time', () => {
-//       expect(EventWrapper.find('.end-time')).toHaveLength(1);
-//     });
