@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import './nprogres.css';
+import './nprogress.css';
 
 //components
 import EventList from './EventList';
