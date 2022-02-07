@@ -10,6 +10,7 @@ class NumberOfEvents extends Component {
   } 
 
 
+
   render() {
     const { numberOfEvents } = this.props;
 
