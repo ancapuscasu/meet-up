@@ -37,8 +37,8 @@ class App extends Component {
   updateNumberOfEvents = async (newNumberOfEvents) => {
     let { currentLocation } = this.state;
 
-    await this.setState({numberOfEvents: newNumberOfEvents}, () => {
-      console.log(this.state.numberOfEvents);
+    await this.setState({
+      numberOfEvents: newNumberOfEvents
     });
     this.updateEvents(currentLocation);
   };

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class NumberOfEvents extends Component {
 
 
-
   handleInputChange = (e) => {
     const newNumber = parseInt(e.target.value);
     this.props.updateNumberOfEvents(newNumber);
