@@ -64,9 +64,6 @@ class App extends Component {
 
   render() {
 
-    if (this.state.events.length === 0) {
-      return <h1>loading</h1>
-    } 
 
     let { events, locations, numberOfEvents } = this.state;
 
