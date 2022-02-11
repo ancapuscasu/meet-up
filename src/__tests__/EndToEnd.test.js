@@ -1,5 +1,4 @@
 import puppeteer from 'puppeteer';
-import mockData from '../mock-data';
 
 describe('filter events by city (feature 1)', () => {
 
