@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import './nprogress.css';
-import NProgress from "nprogress";
 
 //components
 import EventList from './EventList';
@@ -19,11 +18,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    NProgress.start();
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        NProgress.done();
         this.setState({ 
           events: events.slice(0, this.state.numberOfEvents),
           locations:extractLocations(events) 
@@ -66,6 +63,11 @@ class App extends Component {
 
 
   render() {
+
+    if (this.state.events.length === 0) {
+      return <h1>loading</h1>
+    } 
+
     let { events, locations, numberOfEvents } = this.state;
 
     return (
@@ -75,6 +77,7 @@ class App extends Component {
         <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
       </div>
     );
+    
   }
 }
 
