@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactPaginate from 'react-paginate';
 import './App.css';
 import './nprogress.css';
 
@@ -9,21 +10,29 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 
 class App extends Component {
-
+  
   state = {
     events:[],
     locations:[],
+    currentLocation: 'all',
     numberOfEvents: 25,
-    currentLocation: 'all'
+    offset: 0,
+    currentPage:0,
+    pageCount: ''
   }
 
   componentDidMount() {
     this.mounted = true;
+    this.receivedData();
+  }
+
+  receivedData() {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
-          events: events.slice(0, this.state.numberOfEvents),
-          locations:extractLocations(events) 
+          events: events.slice(this.state.offset, this.state.offset + this.state.numberOfEvents),
+          locations:extractLocations(events),
+          pageCount: Math.ceil(events.length / this.state.perPage),
         });
       }
     });
@@ -60,6 +69,18 @@ class App extends Component {
     });
   }
 
+  handlePageClick = event => {
+    const selectedPage = event.selected;
+    const offset = selectedPage * this.state.perPage;
+
+    this.setState({
+      currentPage: selectedPage,
+      offset: offset
+    }, () => {
+      this.receivedData()
+    })
+  }
+
 
 
   render() {
@@ -72,6 +93,19 @@ class App extends Component {
         <CitySearch locations={locations} updateEvents={this.updateEvents}/>
         <EventList events={events}/>
         <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
+        <ReactPaginate
+          previousLabel={'prev'}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+        />
       </div>
     );
     
