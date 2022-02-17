@@ -84,16 +84,16 @@ class App extends Component {
       return (
         <div className="App">
           <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-          <div class="lds-dual-ring"></div>
           <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
+          <div class="lds-dual-ring"></div>
        </div>
       );
     } else {
       return (
         <div className="App">
           <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-          <EventList events={events}/>
           <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
+          <EventList events={events}/>
         </div>
       );
     }
