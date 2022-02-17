@@ -93,15 +93,19 @@ input[type='number'] {
 }
 
 .event-details {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   overflow-wrap: break-word;
+}
+
+.event-details__location {
+  margin-bottom: 1.5rem;
 }
 
 .details-btn {
   position: absolute;
   right: 5px;
   bottom: 5px;
-  padding: 1rem 1.6rem;
+  padding: 0.5rem 1rem;
   background-color: #fff;
   border-radius: 1.5rem;
   box-sizing: border-box;
