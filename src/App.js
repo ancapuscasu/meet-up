@@ -7,6 +7,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
+import { WarningAlert } from './Alert';
 
 class App extends Component {
   
@@ -14,11 +15,13 @@ class App extends Component {
     events:[],
     locations:[],
     currentLocation: 'all',
-    numberOfEvents: 12
+    numberOfEvents: 12,
+    offlineAlertText: ''
   }
 
   componentDidMount() {
     this.mounted = true;
+    this.offlineAlert();
   
     getEvents().then((events) => {
       if (this.mounted) {
@@ -32,6 +35,10 @@ class App extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
+  }
+
+  componentDidUpdate () {
+    this.offlineAlert();
   }
 
 
@@ -73,16 +80,28 @@ class App extends Component {
     })
   }
 
+  offlineAlert = () => {
+    if (!navigator.onLine) {
+      this.setState({
+        offlineAlertText: 'You are not connected to the internet. <br> The events you see may not be up-to-date.'
+      });
+    } else {
+      this.setState({
+        offlineAlertText: ''
+      });
+    }
+  }
 
 
   render() {
 
 
-    let { events, locations, numberOfEvents } = this.state;
+    let { events, locations, numberOfEvents, offlineAlertText } = this.state;
 
     if(events.length === 0) {
       return (
         <div className="App">
+          <WarningAlert classNametext = {offlineAlertText} />
           <CitySearch locations={locations} updateEvents={this.updateEvents}/>
           <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
           <div class="lds-dual-ring"></div>
@@ -91,6 +110,7 @@ class App extends Component {
     } else {
       return (
         <div className="App">
+          <WarningAlert text = {offlineAlertText} />
           <CitySearch locations={locations} updateEvents={this.updateEvents}/>
           <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
           <EventList events={events}/>
