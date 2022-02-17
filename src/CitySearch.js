@@ -1,13 +1,15 @@
 // src/CitySearch.js
 
 import React, { Component } from 'react';
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
 
   state = {
     query: '',
     suggestions: [],
-    showSuggestions: false
+    showSuggestions: false,
+    infoText: ''
   }
 
   handleInputChange = (event) => {
@@ -18,17 +20,27 @@ class CitySearch extends Component {
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) === 0;
     });
-    this.setState({ 
-      query:value,
-      suggestions,
-    });
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value,
+        infoText: 'We could not find the city you are looking for. Please try another city.',
+        suggestions: []
+      })
+    } else {
+      return this.setState({ 
+        query: value,
+        suggestions,
+        infoText: ''
+      });
+    }
   };
 
 
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
-      showSuggestions: false
+      showSuggestions: false,
+      infoText: ''
     });
 
     this.props.updateEvents(suggestion);
@@ -36,9 +48,10 @@ class CitySearch extends Component {
 
 
   render() {
-    let { showSuggestions, suggestions, query } = this.state;
+    let { showSuggestions, suggestions, query, infoText } = this.state;
     return (
       <div className='CitySearch'>
+        <InfoAlert text={infoText} />
         <input
           type="text"
           className="city"
@@ -62,25 +75,3 @@ class CitySearch extends Component {
 }
 
 export default CitySearch;
-
-
-
-
-// import React from 'react';
-
-
-
-// function CitySearch(props) {
-//   return (
-//     <div className='CitySearch'> 
-//       <input
-//         type="text"
-//         className="city"
-//       />
-//       <ul className="suggestions" >
-//       </ul>
-//     </div>
-//   );
-// }
-
-// export default CitySearch;
