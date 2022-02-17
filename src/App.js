@@ -80,13 +80,23 @@ class App extends Component {
 
     let { events, locations, numberOfEvents } = this.state;
 
-    return (
-      <div className="App">
-        <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-        <EventList events={events}/>
-        <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
-      </div>
-    );
+    if(events.length === 0) {
+      return (
+        <div className="App">
+          <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+          <div class="lds-dual-ring"></div>
+          <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
+       </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+          <EventList events={events}/>
+          <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
+        </div>
+      );
+    }
     
   }
 }
