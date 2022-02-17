@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactPaginate from 'react-paginate';
 import './App.css';
 import './nprogress.css';
 
@@ -15,24 +14,17 @@ class App extends Component {
     events:[],
     locations:[],
     currentLocation: 'all',
-    numberOfEvents: 25,
-    offset: 0,
-    currentPage:0,
-    pageCount: ''
+    numberOfEvents: 12
   }
 
   componentDidMount() {
     this.mounted = true;
-    this.receivedData();
-  }
-
-  receivedData() {
+  
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
-          events: events.slice(this.state.offset, this.state.offset + this.state.numberOfEvents),
+          events: events.slice(0, this.state.numberOfEvents),
           locations:extractLocations(events),
-          pageCount: Math.ceil(events.length / this.state.perPage),
         });
       }
     });
@@ -93,19 +85,6 @@ class App extends Component {
         <CitySearch locations={locations} updateEvents={this.updateEvents}/>
         <EventList events={events}/>
         <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
-        <ReactPaginate
-          previousLabel={'prev'}
-          nextLabel={"next"}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          pageCount={this.state.pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={this.handlePageClick}
-          containerClassName={"pagination"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active"}
-        />
       </div>
     );
     
@@ -113,25 +92,3 @@ class App extends Component {
 }
 
 export default App;
-
-/** 
-import React from 'react';
-
-//components
-import EventList from './EventList';
-
-//styling
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <EventList />
-    </div>
-  );
-}
-
-export default App;
-
-*/
-
