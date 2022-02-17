@@ -6,6 +6,7 @@ class Alert extends Component {
         this.color = null;
         this.width = '20rem';
         this.fontSize = '0.8rem';
+        this.margin = "0.5rem auto";
     }
 
 
@@ -13,7 +14,8 @@ class Alert extends Component {
         return {
             color: this.color,
             width: this.width,
-            "font-size": this.fontSize
+            "font-size": this.fontSize,
+            margin: this.margin
         };
     }
 
@@ -35,9 +37,16 @@ class Alert extends Component {
 }
 
 export class ErrorAlert extends Alert {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.color = '#e91e63';
+    }
+}
+
+export class WarningAlert extends Alert {
+    constructor(props) {
+        super(props);
+        this.color= '#ff9933';
     }
 
 }
