@@ -37,9 +37,9 @@ class App extends Component {
     this.mounted = false;
   }
 
-  componentDidUpdate () {
-    this.offlineAlert();
-  }
+  // componentDidUpdate () {
+  //   this.offlineAlert();
+  // }
 
 
   updateNumberOfEvents = async (newNumberOfEvents) => {
@@ -80,10 +80,10 @@ class App extends Component {
     })
   }
 
-  offlineAlert = () => {
+  offlineAlert() {
     if (!navigator.onLine) {
       this.setState({
-        offlineAlertText: 'You are not connected to the internet. <br> The events you see may not be up-to-date.'
+        offlineAlertText: 'You are not connected to the internet. The events you see may not be up-to-date.'
       });
     } else {
       this.setState({
@@ -101,7 +101,7 @@ class App extends Component {
     if(events.length === 0) {
       return (
         <div className="App">
-          <WarningAlert classNametext = {offlineAlertText} />
+          <WarningAlert text = {offlineAlertText} />
           <CitySearch locations={locations} updateEvents={this.updateEvents}/>
           <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents}/>
           <div class="lds-dual-ring"></div>
