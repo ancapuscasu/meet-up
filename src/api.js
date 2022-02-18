@@ -2,6 +2,28 @@ import axios from "axios";
 import { mockData } from "./mock-data";
 import NProgress from "nprogress";
 
+
+
+/**
+ * This function takes an events array, then uses map to create a new array with only locations.
+ * It will also remove all duplicates by creating another new array using the spread operator and spreading a Set.
+ * The Set will remove all duplicates from the array.
+ */
+ export const extractLocations = (events) => {
+    var extractLocations = events.map((event) => event.location);
+    var locations = [...new Set(extractLocations)];
+    return locations;
+};
+
+//Function to check the token's validity
+export const checkToken = async (accessToken) => {
+    const result = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`)
+        .then((res) => res.json())
+        .catch((error) => error.json());
+        console.log(result.error);
+    return result;
+};
+
 //Function to getToken 
 const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
@@ -16,7 +38,7 @@ const getToken = async (code) => {
     access_token && localStorage.setItem("access_token", access_token);
   
     return access_token;
-  };
+};
 
 
 //Function to getAccessToken
@@ -37,16 +59,11 @@ export const getAccessToken = async () => {
             return code && getToken(code);
         }
     return accessToken;
-}
+};
 
 
-//Function to check the token's validity
-export const checkToken = async (accessToken) => {
-    const result = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`)
-        .then((res) => res.json())
-        .catch((error) => error.json());
-    return result;
-}
+
+
 
 
 export const getEvents = async () => {
@@ -90,16 +107,5 @@ const removeQuery = () => {
         newurl = window.location.protocol + "//" + window.location.host;
         window.history.pushState("", "", newurl);
       }
-}
-
-
-/**
- * This function takes an events array, then uses map to create a new array with only locations.
- * It will also remove all duplicates by creating another new array using the spread operator and spreading a Set.
- * The Set will remove all duplicates from the array.
- */
-export const extractLocations = (events) => {
-    var extractLocations = events.map((event) => event.location);
-    var locations = [...new Set(extractLocations)];
-    return locations;
 };
+

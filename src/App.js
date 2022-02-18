@@ -21,41 +21,35 @@ class App extends Component {
     showWelcomeScreen: undefined
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get("code");
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
+
+    // const accessToken = localStorage.getItem('access_token');
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const code = searchParams.get("code");
+    // this.setState({ 
+    //   showWelcomeScreen: !(code || isTokenValid) 
+    // });
+    // if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
+          this.setState({ 
+            events: events.slice(0, this.state.numberOfEvents),
+            locations:extractLocations(events), 
+          });
         }
       }); 
     }
-
-
-    this.offlineAlert();
-  
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ 
-          events: events.slice(0, this.state.numberOfEvents),
-          locations:extractLocations(events),
-        });
-      }
-    });
-  }
+  // }
 
   componentWillUnmount() {
     this.mounted = false;
   }
 
-  // componentDidUpdate () {
-  //   this.offlineAlert();
-  // }
+  componentDidUpdate() {
+    this.offlineAlert = () => {};
+  }
 
 
   updateNumberOfEvents = async (newNumberOfEvents) => {
@@ -110,15 +104,9 @@ class App extends Component {
 
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) {
-      return <div className='App' />
-    } else {
-      return (
-        ...
-      );
-    }
-
     let { events, locations, numberOfEvents, offlineAlertText, showWelcomeScreen } = this.state;
+
+    if (showWelcomeScreen === undefined) return <div className='App' />
 
     if(events.length === 0) {
       return (
