@@ -170,3 +170,33 @@ input[type='number'] {
     transform: rotate(360deg);
   }
 }
+
+/* data-vis-components */
+
+.data-vis-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 4rem 0;
+  justify-content: space-between;
+  min-width: 1000px;
+}
+.data-vis-wrapper .recharts-responsive-container {
+  min-width: 100%;
+  display: flex;
+}
+.recharts-surface {
+  overflow: visible;
+}
+
+.data-vis-wrapper__chart {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.data-vis-wrapper__plot {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
