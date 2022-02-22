@@ -26,7 +26,7 @@
     animation: fadeInAnimation ease 2s;
 }
 
-.WelcomeScreen__message {
+.WelcomeScreen__message-wrapper {
     animation: fadeInAnimation ease 5s;
     display: flex;
     flex-direction: column;
@@ -80,4 +80,34 @@
 }
 .WelcomeScreen__privacy:visited, .WelcomeScreen__privacy:active {
     color: #2f697c;
+}
+
+@media screen and (max-width: 400px) {
+    .WelcomeScreen {
+        align-content: center;
+    }
+    .WelcomeScreen__title {
+        font-size: 15vw;
+        width: 100%;
+        text-align: center;
+    }
+
+    .WelcomeScreen__message {
+        text-align: center;
+        margin: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 725px) {
+    .WelcomeScreen__title {
+        font-size: 7vw;
+        text-align: center;
+    }
+    
+    .WelcomeScreen__message {
+        text-align: center;
+        margin: 1.5rem;
+        font-size: 0.9rem;
+    }
 }
