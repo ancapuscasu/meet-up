@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/meet-up/static/css/main.9aecbc46.css",
-    "main.js": "/meet-up/static/js/main.bcee2bc6.js",
+    "main.css": "/meet-up/static/css/main.d3b03337.css",
+    "main.js": "/meet-up/static/js/main.da3a7a5c.js",
     "static/js/377.cacbf93b.chunk.js": "/meet-up/static/js/377.cacbf93b.chunk.js",
     "service-worker.js": "/meet-up/service-worker.js",
     "static/media/savate-regular-webfont-webfont.woff": "/meet-up/static/media/savate-regular-webfont-webfont.fcd08c8a468185b23bb7.woff",
     "static/media/savate-regular-webfont-webfont.woff2": "/meet-up/static/media/savate-regular-webfont-webfont.9f3daaba3be8ddd7af8e.woff2",
     "index.html": "/meet-up/index.html",
-    "main.9aecbc46.css.map": "/meet-up/static/css/main.9aecbc46.css.map",
-    "main.bcee2bc6.js.map": "/meet-up/static/js/main.bcee2bc6.js.map",
+    "main.d3b03337.css.map": "/meet-up/static/css/main.d3b03337.css.map",
+    "main.da3a7a5c.js.map": "/meet-up/static/js/main.da3a7a5c.js.map",
     "377.cacbf93b.chunk.js.map": "/meet-up/static/js/377.cacbf93b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9aecbc46.css",
-    "static/js/main.bcee2bc6.js"
+    "static/css/main.d3b03337.css",
+    "static/js/main.da3a7a5c.js"
   ]
 }
