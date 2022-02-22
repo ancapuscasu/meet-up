@@ -1,3 +1,4 @@
+/****************************  General styling  */
 @font-face {
   font-family: 'savateregular';
   src: url('fonts/savate-regular-webfont-webfont.woff2') format('woff2'),
@@ -12,20 +13,6 @@
   text-align: center;
   padding: 2% 3%;
 }
-
-@keyframes fadeInAnimation {
-  0% {
-      opacity: 0;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
-}
-
-
 
 .App * {
   box-sizing: border-box;
@@ -52,30 +39,15 @@ p {
   margin: 0.5rem 0;
 }
 
+
+/****************************  CitySearch Component  */
 .display-none {
   display: none;
 }
+
 .showSuggestions {
   display: block;
 }
-
-input[type="text"],
-input[type="number"] {
-  padding: 0.5rem 0.8rem;
-  border-radius: 3px;
-  outline: none;
-  border: 0.15rem solid #ccc;
-  font-size: 0.9rem;
-  line-height: 1.3rem;
-  align-self: center;
-  height: 2rem;
-}
-
-input[type='number'] {
-  width: 5rem;
-  margin-left: 0.3rem;
-}
-
 
 .city {
   width: 20rem;
@@ -89,7 +61,6 @@ input[type='number'] {
   position: relative;
   margin: 1rem;
 }
-
 
 .suggestions {
   width: 20rem;
@@ -117,6 +88,43 @@ input[type='number'] {
   background-color: #bcdcdb;
 }
 
+
+/*************************** NumberOfEvents Component  */
+.number-of-events-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.number-of-events {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 20rem;
+}
+
+
+/*************************** input fields (CitySearch + NumberOfEvents) */
+input[type="text"],
+input[type="number"] {
+  padding: 0.5rem 0.8rem;
+  border-radius: 3px;
+  outline: none;
+  border: 0.15rem solid #ccc;
+  font-size: 0.9rem;
+  line-height: 1.3rem;
+  align-self: center;
+  height: 2rem;
+}
+
+input[type='number'] {
+  width: 5rem;
+  margin-left: 0.3rem;
+}
+
+
+/****************************  Event Component */
 .event {
   padding: 0.8rem 0.8rem 2rem;
   margin-bottom: 0.8rem;
@@ -164,22 +172,12 @@ input[type='number'] {
   color: #fff;
 }
 
-.number-of-events-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+.event-details__link {
+  text-decoration: none;
+  color: #0088FE;
 }
 
-.number-of-events {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 20rem;
-}
-
-/* Loading Events Spinner */
-
+/*************************** Loading Events Spinner */
 .lds-dual-ring {
   display: inline-block;
   width: 80px;
@@ -205,36 +203,50 @@ input[type='number'] {
   }
 }
 
-/* data-vis-components */
 
-.data-vis-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 4rem 0;
-  justify-content: space-between;
-  min-width: 1000px;
-}
-.data-vis-wrapper .recharts-responsive-container {
-  min-width: 100%;
-  display: flex;
-}
+/*************************** data-vis-components */
 .recharts-surface {
   overflow: visible;
 }
 
-
-.data-vis-wrapper__chart {
-  width: 20%;
+@media screen and (min-width: 1201px) {
+  .data-vis-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3rem 0;
+  }
+  .data-vis-wrapper__chart {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .data-vis-wrapper__plot {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
-.data-vis-wrapper__plot {
-  width: 70%;
+@media screen and (max-width: 1200px) {
+  .data-vis-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem 0;
+  }
+
+  .data-vis-wrapper__chart, .data-vis-wrapper__plot {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 
-/* alerts */
-
+/*************************** alerts */
 .alert {
   display: flex;
   flex-direction: column;

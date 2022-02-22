@@ -38,14 +38,14 @@ class App extends Component {
         }
       });
     } else {
-      // const accessToken = localStorage.getItem('access_token');
-      // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-      // const searchParams = new URLSearchParams(window.location.search);
-      // const code = searchParams.get("code");
-      // this.setState({ 
-      //   showWelcomeScreen: !(code || isTokenValid) 
-      // });
-      // if ((code || isTokenValid) && this.mounted) {
+      const accessToken = localStorage.getItem('access_token');
+      const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = searchParams.get("code");
+      this.setState({ 
+        showWelcomeScreen: !(code || isTokenValid) 
+      });
+      if ((code || isTokenValid) && this.mounted) {
         getEvents().then((events) => {
           if (this.mounted) {
             this.setState({ 
@@ -55,7 +55,7 @@ class App extends Component {
             });
           }
         }); 
-      // }
+      }
     }
   }
 
@@ -94,13 +94,13 @@ class App extends Component {
   render() {
     let { eventsOnPage, events, locations, numberOfEvents, showWelcomeScreen } = this.state;
 
-    // if (showWelcomeScreen === undefined) return <div className='App' />
-    // if (showWelcomeScreen === true) return ( 
-    //   <WelcomeScreen 
-    //     showWelcomeScreen={showWelcomeScreen} 
-    //     getAccessToken={() => { getAccessToken() }}
-    // />
-    // )
+    if (showWelcomeScreen === undefined) return <div className='App' />
+    if (showWelcomeScreen === true) return ( 
+      <WelcomeScreen 
+        showWelcomeScreen={showWelcomeScreen} 
+        getAccessToken={() => { getAccessToken() }}
+    />
+    )
 
       return (
         <div className="App">
