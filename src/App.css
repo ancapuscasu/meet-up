@@ -1,12 +1,43 @@
+@font-face {
+  font-family: 'savateregular';
+  src: url('fonts/savate-regular-webfont-webfont.woff2') format('woff2'),
+       url('fonts/savate-regular-webfont-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
   text-align: center;
   padding: 2% 5%;
 }
 
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+
+
 .App * {
   box-sizing: border-box;
 }
+
+.meet-up-brand {
+  font-family: "savateregular";
+  letter-spacing: 0.1em;
+  color: #E9765B;
+  margin: 0, 0.1rem;
+}
+
 
 ul {
   padding: 0;

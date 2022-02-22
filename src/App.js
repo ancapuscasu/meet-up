@@ -95,6 +95,12 @@ class App extends Component {
     let { eventsOnPage, events, locations, numberOfEvents, showWelcomeScreen } = this.state;
 
     if (showWelcomeScreen === undefined) return <div className='App' />
+    if (showWelcomeScreen === true) return ( 
+      <WelcomeScreen 
+        showWelcomeScreen={showWelcomeScreen} 
+        getAccessToken={() => { getAccessToken() }}
+    />
+    )
 
       return (
         <div className="App">
@@ -118,10 +124,6 @@ class App extends Component {
           {/* //EventList// */}
           {events.length === 0 ? <div class="lds-dual-ring"></div> : <EventList events={eventsOnPage}/> }
 
-          <WelcomeScreen 
-            showWelcomeScreen={showWelcomeScreen} 
-            getAccessToken={() => { getAccessToken() }}
-          />
        </div>
       );
   } 
