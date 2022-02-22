@@ -22,12 +22,12 @@ const EventGenre = ({ events }) => {
   return (
     <div className='data-vis-wrapper__chart'>
       <h4>Events by topic</h4>
-      <ResponsiveContainer height={400} >
-        <PieChart >
+      {/* <ResponsiveContainer height={400} > */}
+        <PieChart width={250} height={250} >
           <Pie
             data={data}
-            cx={200}
-            cy={200}
+            cx={125}
+            cy={125}
             labelLine={false}
             outerRadius={80}
             fill="#8884d8"
@@ -41,7 +41,7 @@ const EventGenre = ({ events }) => {
           ))}
           </Pie>
         </PieChart>
-      </ResponsiveContainer>
+      {/* </ResponsiveContainer> */}
     </div>
   );
 

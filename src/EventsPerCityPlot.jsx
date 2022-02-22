@@ -22,15 +22,14 @@ class EventsPerCityPlot extends Component {
   };
 
   render() {
-    let { events } = this.props;
 
     return (
       <div className='data-vis-wrapper__plot'>
         <h4>Events in each city</h4>
-        <ResponsiveContainer height={400}>
+        <ResponsiveContainer height={250}>
           <ScatterChart
             margin={{ 
-              top: 20, right: 20, bottom: 20, left: 20 
+              top: 20, right: 20, bottom: 20, left: 0 
             }}
           >
             <CartesianGrid />

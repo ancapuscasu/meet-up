@@ -38,14 +38,14 @@ class App extends Component {
         }
       });
     } else {
-      const accessToken = localStorage.getItem('access_token');
-      const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-      const searchParams = new URLSearchParams(window.location.search);
-      const code = searchParams.get("code");
-      this.setState({ 
-        showWelcomeScreen: !(code || isTokenValid) 
-      });
-      if ((code || isTokenValid) && this.mounted) {
+      // const accessToken = localStorage.getItem('access_token');
+      // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+      // const searchParams = new URLSearchParams(window.location.search);
+      // const code = searchParams.get("code");
+      // this.setState({ 
+      //   showWelcomeScreen: !(code || isTokenValid) 
+      // });
+      // if ((code || isTokenValid) && this.mounted) {
         getEvents().then((events) => {
           if (this.mounted) {
             this.setState({ 
@@ -55,7 +55,7 @@ class App extends Component {
             });
           }
         }); 
-      }
+      // }
     }
   }
 
@@ -94,18 +94,19 @@ class App extends Component {
   render() {
     let { eventsOnPage, events, locations, numberOfEvents, showWelcomeScreen } = this.state;
 
-    if (showWelcomeScreen === undefined) return <div className='App' />
-    if (showWelcomeScreen === true) return ( 
-      <WelcomeScreen 
-        showWelcomeScreen={showWelcomeScreen} 
-        getAccessToken={() => { getAccessToken() }}
-    />
-    )
+    // if (showWelcomeScreen === undefined) return <div className='App' />
+    // if (showWelcomeScreen === true) return ( 
+    //   <WelcomeScreen 
+    //     showWelcomeScreen={showWelcomeScreen} 
+    //     getAccessToken={() => { getAccessToken() }}
+    // />
+    // )
 
       return (
         <div className="App">
-          { !navigator.onLine ? <WarningAlert text='You are not connected to the internet. The events you see may not be up-to-date.'/> : <WarningAlert text=''/>}
-          <h1>Meet Up App</h1>
+          { !navigator.onLine ? <WarningAlert className="alert__offline-visible" text='You are not connected to the internet. The events you see may not be up-to-date.'/> : <WarningAlert className="alert__offline-hidden" text=''/>}
+          
+          <h1 className='meet-up-brand title'>Meet Up</h1>
 
           <CitySearch 
             locations={locations} 
