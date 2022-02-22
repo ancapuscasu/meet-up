@@ -1,4 +1,18 @@
+/* keyframes for welcome page */
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+
 /* Welcome Page */
+
 .WelcomeScreen {
     display: flex;
     flex-direction: column;
@@ -17,8 +31,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
 }
 
 
