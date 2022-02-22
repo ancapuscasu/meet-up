@@ -10,7 +10,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
   text-align: center;
-  padding: 2% 5%;
+  padding: 2% 3%;
 }
 
 @keyframes fadeInAnimation {
@@ -38,6 +38,10 @@
   margin: 0, 0.1rem;
 }
 
+.meet-up-brand.title {
+  margin-top: 5rem;
+  font-size: 3rem;
+}
 
 ul {
   padding: 0;
@@ -80,11 +84,10 @@ input[type='number'] {
 .CitySearch {
   align-items: center;
   display: flex;
-  flex-basis: 18.75px;
   flex-direction: column;
   margin: auto;
-  max-width: 18.75px;
   position: relative;
+  margin: 1rem;
 }
 
 
@@ -220,14 +223,55 @@ input[type='number'] {
   overflow: visible;
 }
 
+
 .data-vis-wrapper__chart {
-  display: flex;
-  flex-direction: column;
   width: 20%;
 }
 
 .data-vis-wrapper__plot {
+  width: 70%;
+}
+
+
+/* alerts */
+
+.alert {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  align-items: center;
+}
+
+.alert__offline-visible {
+  position: fixed;
+  top: 0;
+  border: 0.1rem solid #df4759;
+  border-top: none;
+  border-radius: 3px;
+  padding: 1rem;
+  margin-top: 0;
+  width: 100%;
+  background-color: rgba(223, 71, 89, 0.2)
+}
+
+.alert__offline-hidden {
+  border: none;
+}
+
+.alert__CitySearch {
+  background-color: rgba(91, 192, 222, 0.2);
+  border: 0.1rem solid #5bc0de;
+  border-radius: 3px;
+  padding: 0.5rem;
+  width: 20rem;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.alert__NumberOfEvents {
+  background-color: rgba(233, 30, 99, 0.2);
+  border: 0.1rem solid #e91e63;
+  border-radius: 3px;
+  padding: 0.5rem;
+  width: 20rem;
+  font-size: 0.8rem;
 }

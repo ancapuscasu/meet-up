@@ -51,7 +51,8 @@ class CitySearch extends Component {
     let { showSuggestions, suggestions, query, infoText } = this.state;
     return (
       <div className='CitySearch'>
-        <InfoAlert text={infoText} />
+        { infoText === '' ? <InfoAlert text={infoText} /> : <InfoAlert text={infoText} className="alert__CitySearch" /> }
+        {/* <InfoAlert text={infoText} className="alert__CitySearch" /> */}
         <input
           type="text"
           className="city"
