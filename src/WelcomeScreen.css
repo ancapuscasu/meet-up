@@ -97,6 +97,10 @@
         margin: 1.5rem;
         font-size: 0.9rem;
     }
+
+    .WelcomeScreen__privacy {
+        font-size: 0.7;
+    }
 }
 
 @media screen and (min-width: 400px) and (max-width: 725px) {
