@@ -20,7 +20,7 @@ class App extends Component {
     locations:[],
     currentLocation: 'all',
     numberOfEvents: 12,
-    showWelcomeScreen: undefined
+    showWelcomeScreen: true
   }
 
   async componentDidMount() {
@@ -51,7 +51,7 @@ class App extends Component {
             this.setState({ 
               events: events,
               eventsOnPage: events.slice(0, this.state.numberOfEvents),
-              locations:extractLocations(events), 
+              locations:extractLocations(events)
             });
           }
         }); 
@@ -99,11 +99,12 @@ class App extends Component {
       <WelcomeScreen 
         showWelcomeScreen={showWelcomeScreen} 
         getAccessToken={() => { getAccessToken() }}
-    />
+      />
     )
 
       return (
         <div className="App">
+        
           { !navigator.onLine ? <WarningAlert className="alert__offline-visible" text='You are not connected to the internet. The events you see may not be up-to-date.'/> : <WarningAlert className="alert__offline-hidden" text=''/>}
           
           <h1 className='meet-up-brand title'>Meet Up</h1>
