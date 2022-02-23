@@ -1,4 +1,8 @@
 /****************************  General styling  */
+/* svg {
+  width: 100%;height: auto;
+} */
+
 @font-face {
   font-family: 'savateregular';
   src: url('fonts/savate-regular-webfont-webfont.woff2') format('woff2'),
@@ -247,11 +251,18 @@ input[type='number'] {
   }
 }
 
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
   .recharts-responsive-container {
     width: 70%;
   }
 }
+
+@media screen and (min-width: 400px) {
+  .recharts-responsive-container {
+    width: 30%;
+  }
+  
+} */
 
 
 /*************************** alerts */

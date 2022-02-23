@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 
 const EventGenre = ({ events }) => {
@@ -22,17 +22,14 @@ const EventGenre = ({ events }) => {
   return (
     <div className='data-vis-wrapper__chart'>
       <h4>Events by topic</h4>
-      <ResponsiveContainer height={250} width='30%'>
-        <PieChart  >
+      <ResponsiveContainer width='100%' height={250}>
+        <PieChart >
           <Pie
             data={data}
-            cx={125}
-            cy={125}
             labelLine={false}
             outerRadius={70}
             fill="#8884d8"
             dataKey="value"
-            label={({ name }) => `${name}`}
           >
             {data.map((entry, index) => (
               <Cell 
@@ -40,6 +37,7 @@ const EventGenre = ({ events }) => {
                 fill={COLORS[index % COLORS.length]} />
           ))}
           </Pie>
+          <Legend verticalAlign="bottom" align="center"/>
         </PieChart>
       </ResponsiveContainer>
     </div>
