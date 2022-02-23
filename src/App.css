@@ -247,6 +247,12 @@ input[type='number'] {
   }
 }
 
+@media screen and (max-width: 400px) {
+  .recharts-responsive-container {
+    width: 70%;
+  }
+}
+
 
 /*************************** alerts */
 .alert {
